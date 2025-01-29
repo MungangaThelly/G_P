@@ -1,4 +1,4 @@
-const express = require("express");
+/* const express = require("express");
 const cors = require("cors");
 require("dotenv").config(); 
 
@@ -16,7 +16,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/auth' , authRoutes)
 app.use('/api/messages', messageRoutes)
 
-module.exports = app;
+module.exports = app; */
 
 
 

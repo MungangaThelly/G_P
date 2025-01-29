@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-
-const express = require('express');
-const authController = require('../Controllers/authController'); 
-const router = express.Router();
-
-
-router.post('/register', authController.register);
-router.post('/login', authController.login);
-// router.get('/secure', verifyToken, authController.secure);
-//router.get('/admin-only', verifyAdmin, authController.adminOnly);
-
-router.post('/test', (req, res) => {
-    console.log('Test route hit!');
-    res.status(200).json({ message: 'Test route working' });
-});
-
-
-module.exports = router;
-=======
 const express = require('express');
 const { createUser } = require('../controllers/userController');  // Correctly import createUser
 const authController = require('../controllers/authController');  // Correct path
@@ -41,4 +21,3 @@ router.get('/admin-only', verifyToken, verifyAdmin, authController.adminOnly);
 
 module.exports = router;
 
->>>>>>> 89d2f636acf73e4dd7498e9c88326f657ccc2d69

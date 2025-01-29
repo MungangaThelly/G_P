@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-// Define the User class
-const users = []; // initiate users array
-
-const hashPassword = (password) => {
-  return `hashed_${password}`;
-=======
 const bcrypt = require('bcrypt');
 
 const users = [];
 
 const hashPassword = (password) => {
   return bcrypt.hashSync(password, 10);  // Salt rounds
->>>>>>> 89d2f636acf73e4dd7498e9c88326f657ccc2d69
 };
 
 class User {
@@ -27,23 +19,6 @@ class User {
 
   update(data) {
     if (data.password) {
-<<<<<<< HEAD
-      data.password= hashPassword(data.password);
-  }
-    Object.assign(this, data);
-    this.updatedAt = new Date();
-
-   }
-}
-
-// Validate email format
-const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-// Validate password length
-const isValidPassword = (password) => password.length >= 6;
-
-const createUser = (id, email, password, name, role) => {
-=======
       data.password = hashPassword(data.password);
     }
     Object.assign(this, data);
@@ -60,7 +35,6 @@ const createUser = (id, email, password, name, role) => {
   if (users.some(user => user.email === email)) {
     throw new Error('Email already in use');
   }
->>>>>>> 89d2f636acf73e4dd7498e9c88326f657ccc2d69
   if (!isValidEmail(email)) {
     throw new Error('Invalid email format');
   }
@@ -74,19 +48,10 @@ const createUser = (id, email, password, name, role) => {
 };
 
 // Example: Create a new user
-<<<<<<< HEAD
-/*try {
-=======
 try {
->>>>>>> 89d2f636acf73e4dd7498e9c88326f657ccc2d69
   const newUser = createUser(3, "alex.jones@example.com", "hashedpassword789", "Alex Jones", "moderator");
   console.log('User created:', newUser);
 } catch (error) {
   console.error(error.message);
 }
-<<<<<<< HEAD
-*/
-=======
-
->>>>>>> 89d2f636acf73e4dd7498e9c88326f657ccc2d69
 module.exports = User;
