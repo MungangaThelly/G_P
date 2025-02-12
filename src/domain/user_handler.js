@@ -1,34 +1,49 @@
-const bcrypt = require('bcryptjs');
+// userHandler.js
 
-const users = [
-  {
-    id: 1,
-    email: "john.doe@example.com",
-    password: bcrypt.hashSync("password123", 10), // Securely hashed password
-    name: "John Doe",
-    role: "admin",
-    createdAt: new Date("2023-01-01"),
-    updatedAt: new Date("2023-01-01"),
-  },
-  {
-    id: 2,
-    email: "jane.smith@example.com",
-    password: bcrypt.hashSync("password456", 10), // Securely hashed password
-    name: "Jane Smith",
-    role: "user",
-    createdAt: new Date("2023-02-15"),
-    updatedAt: new Date("2023-02-15"),
-  },
-  {
-    id: 3,
-    email: "alex.jones@example.com",
-    password: bcrypt.hashSync("password789", 10), // Securely hashed password
-    name: "Alex Jones",
-    role: "moderator",
-    createdAt: new Date("2023-03-10"),
-    updatedAt: new Date("2023-03-10"),
-  },
-];
+// Simulating an in-memory database with an array
+let users = [];  // This will store our users
 
-module.exports = users;
+// Function to read a user by username
+const readByUserName = (username) => {
+  return users.find(user => user.username === username);  // Find the user by username
+};
 
+const create = (userData) => {
+  try {
+    const newUser = { id: users.length + 1, ...userData };  // Assign an ID and spread user data
+    users.push(newUser);  // Add the new user to the array
+    return newUser;
+  } catch (error) {
+    throw new Error('Error creating user');
+  }
+};
+
+const getAllUsers = () => {
+  return users;
+};
+
+const getUserById = (id) => {
+  return users.find(user => user.id === id);
+};
+
+const updateUser = (id, updatedData) => {
+  const userIndex = users.findIndex(user => user.id === id);
+  if (userIndex === -1) return null;  // Return null if user is not found
+  users[userIndex] = { ...users[userIndex], ...updatedData };  // Update user data
+  return users[userIndex];
+};
+
+const deleteUser = (id) => {
+  const userIndex = users.findIndex(user => user.id === id);
+  if (userIndex === -1) return null;
+  const deletedUser = users.splice(userIndex, 1);  // Remove the user from the array
+  return deletedUser[0];
+};
+
+module.exports = {
+  create,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser
+};
